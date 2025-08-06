@@ -2,16 +2,25 @@
 const express = require("express");
 const http = require("http");
 const mongoose = require("mongoose");
+require('dotenv').config();
+
 
 const app = express();
 var server = http.createServer(app);
 
+var io = require("socket.io")
+var io = socketio(server);
+//var io = require("socket.io") (server);
+
+//client -> middleware -> server
+//middleware
+app.use(express.json()); //it will convert all the incoming data to json format
 var io = require("socket.io")(server);
 
 //middle ware
 app.use(express.json());
 
-const DB = "mongodb+srv://towhid:test%401@cluster0.wd4olme.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const DB = process.env.DB;
 
 io.onconnection('connection', (socket) => {
     console.log('connected!');
@@ -33,4 +42,3 @@ const port = process.env.PORT || 3000;
 server.listen(port, '0.0.0.0', () => {
     console.log(`Server started and running on port ${port}`);
 });
- 
