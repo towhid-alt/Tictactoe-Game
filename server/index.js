@@ -74,5 +74,3 @@ server.listen(port, '0.0.0.0', () => {
     console.log(`Server started and running on port ${port}`);
 });
 
-//Finished till 1:26:05 of-->
-// "Multi Player TicTacToe Game App using Flutter, Node, Express and Socket - Full Stack Development"
